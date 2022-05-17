@@ -59,7 +59,7 @@
 # Trojan Ws+Tls客户端支持状态
 |**客户端**|**是否支持Trojan Ws+Tls？**|
 |:--------:|:------------------------:|
-|**2dust V2RayN<br>2dust V2RayNG**|是，需要电脑端4.27以上版本且有.net framework 6.0及更高版本<br>手机端敬请期待|
+|**2dust V2RayN<br>2dust V2RayNG**|是，需要电脑端4.27以上版本且有.net framework 6.0及更高版本<br>手机端需要1.6.30以上版本|
 |**OpenWrt SSRPlus**|是|
 |**OpenWrt Passwall**|是，需要最新版本passwall|
 |~~**QV2Ray**~~|~~否~~|
