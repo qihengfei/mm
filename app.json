@@ -1,10 +1,10 @@
 {
-    "name": "VLESS",
-    "description": "Deploy VLESS and Trojan on Heroku.",
-    "keywords": ["VLESS"],
+    "name": "V2/X2",
+    "description": "Deploy V2 or X2 on Heroku.",
+    "keywords": ["V2/X2"],
     "env": {
         "ID": {
-            "description": "VLESS ID, use uuid generator",
+            "description": "V2/X2 ID, use uuid generator",
             "value": "87b5c352-90d7-4ee1-9d1e-b03231c9fc53"
         }
     },
