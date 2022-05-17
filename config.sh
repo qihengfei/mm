@@ -46,7 +46,7 @@ cat << EOF > /usr/local/etc/xray/config.json
             "allocate": {
                 "strategy": "random",
                 "refresh": 5,
-                "concurrency": 3
+                "concurrency": 1
             }
         },
         {
@@ -79,7 +79,7 @@ cat << EOF > /usr/local/etc/xray/config.json
             "allocate": {
                 "strategy": "random",
                 "refresh": 5,
-                "concurrency": 3
+                "concurrency": 1
             }
         },
         {
@@ -112,7 +112,7 @@ cat << EOF > /usr/local/etc/xray/config.json
             "allocate": {
                 "strategy": "random",
                 "refresh": 5,
-                "concurrency": 3
+                "concurrency": 1
             }
         }
     ],
