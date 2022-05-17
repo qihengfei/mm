@@ -42,6 +42,11 @@ cat << EOF > /usr/local/etc/xray/config.json
                     "http",
                     "tls"
                 ]
+            },
+            "allocate": {
+                "strategy": "random",
+                "refresh": 5,
+                "concurrency": 3
             }
         },
         {
@@ -70,6 +75,11 @@ cat << EOF > /usr/local/etc/xray/config.json
                      "http",
                      "tls"
                 ]
+            },
+            "allocate": {
+                "strategy": "random",
+                "refresh": 5,
+                "concurrency": 3
             }
         },
         {
@@ -98,6 +108,11 @@ cat << EOF > /usr/local/etc/xray/config.json
                      "http",
                      "tls"
                 ]
+            },
+            "allocate": {
+                "strategy": "random",
+                "refresh": 5,
+                "concurrency": 3
             }
         }
     ],
