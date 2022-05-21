@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Get Cloudflare Tunnel
+mkdir /tmp/cftun
+curl --retry 10 --retry-max-time 60 -L -H "Cache-Control: no-cache" -fsSL github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o /tmp/cftun/cloudflared
+install -m 755 /tmp/cftun/cloudflared /usr/local/bin/cloudflared
+cloudflared --version
+rm -rf /tmp/cftun
+
 # Get V2/X2 binary and decompress binary
 mkdir /tmp/xray
 curl --retry 10 --retry-max-time 60 -L -H "Cache-Control: no-cache" -fsSL github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip -o /tmp/xray/xray.zip
@@ -14,36 +21,29 @@ rm -rf /tmp/xray
 install -d /usr/local/etc/xray
 cat << EOF > /usr/local/etc/xray/config.json
 {
+    "policy": {
+        "levels": {
+            "0": {
+                "handshake": 5,
+                "connIdle": 300,
+                "uplinkOnly": 2,
+                "downlinkOnly": 5,
+                "statsUserUplink": false,
+                "statsUserDownlink": false,
+                "bufferSize": 10240
+            }
+        },
+        "system": {
+            "statsInboundUplink": false,
+            "statsInboundDownlink": false,
+            "statsOutboundUplink": false,
+            "statsOutboundDownlink": false
+        }
+    },
     "log": {
         "loglevel": "none"
     },
     "inbounds": [
-        {
-            "port": ${PORT},
-            "protocol": "vmess",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "$ID"
-                    }
-                ],
-                "disableInsecureEncryption": true
-            },
-            "streamSettings": {
-                "network": "ws",
-                "allowInsecure": false,
-                "wsSettings": {
-                    "path": "/$ID-vmess"
-                }
-            },
-            "sniffing": {
-                "enabled": true,
-                "destOverride": [
-                    "http",
-                    "tls"
-                ]
-            }
-        },
         {
             "port": ${PORT},
             "protocol": "vless",
@@ -59,38 +59,8 @@ cat << EOF > /usr/local/etc/xray/config.json
             },
             "streamSettings": {
                 "network": "ws",
-                "allowInsecure": false,
-                "wsSettings": {
-                  "path": "/$ID-vless"
-                }
-            },
-            "sniffing": {
-                "enabled": true,
-                "destOverride": [
-                     "http",
-                     "tls"
-                ]
-            }
-        },
-        {
-            "port": ${PORT},
-            "protocol": "trojan",
-            "settings": {
-                "clients": [
-                    {
-                        "password":"$ID",
-                        "level": 0,
-                        "email": "love@v2fly.org"
-                    }
-                ],
-                "decryption": "none"
-            },
-            "streamSettings": {
-                "network": "ws",
-                "allowInsecure": false,
-                "wsSettings": {
-                  "path": "/$ID-trojan"
-                }
+                "security": "none",
+                "allowInsecure": false
             },
             "sniffing": {
                 "enabled": true,
@@ -147,4 +117,9 @@ cat << EOF > /usr/local/etc/xray/config.json
 EOF
 
 # Run V2/X2
+if [[ $TUNNEL_TOKEN ]]; then
+echo 'has tunnel token, run cloudflared tunnel'
+/usr/local/bin/xray -config /usr/local/etc/xray/config.json & /usr/local/bin/cloudflared tunnel --no-autoupdate run --token $TUNNEL_TOKEN
+else
 /usr/local/bin/xray -config /usr/local/etc/xray/config.json
+fi
