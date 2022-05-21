@@ -27,32 +27,6 @@ cat << EOF > /usr/local/etc/xray/config.json
     "inbounds": [
         {
             "port": ${PORT},
-            "protocol": "vmess",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "$ID"
-                    }
-                ],
-                "disableInsecureEncryption": true
-            },
-            "streamSettings": {
-                "network": "ws",
-                "allowInsecure": false,
-                "wsSettings": {
-                    "path": "/$ID-vmess"
-                }
-            },
-            "sniffing": {
-                "enabled": true,
-                "destOverride": [
-                    "http",
-                    "tls"
-                ]
-            }
-        },
-        {
-            "port": ${PORT},
             "protocol": "vless",
             "settings": {
                 "clients": [
@@ -69,34 +43,6 @@ cat << EOF > /usr/local/etc/xray/config.json
                 "allowInsecure": false,
                 "wsSettings": {
                   "path": "/$ID-vless"
-                }
-            },
-            "sniffing": {
-                "enabled": true,
-                "destOverride": [
-                     "http",
-                     "tls"
-                ]
-            }
-        },
-        {
-            "port": ${PORT},
-            "protocol": "trojan",
-            "settings": {
-                "clients": [
-                    {
-                        "password":"$ID",
-                        "level": 0,
-                        "email": "love@v2fly.org"
-                    }
-                ],
-                "decryption": "none"
-            },
-            "streamSettings": {
-                "network": "ws",
-                "allowInsecure": false,
-                "wsSettings": {
-                  "path": "/$ID-trojan"
                 }
             },
             "sniffing": {
