@@ -154,4 +154,9 @@ cat << EOF > /usr/local/etc/xray/config.json
 EOF
 
 # Run V2/X2
-/usr/local/bin/xray -config /usr/local/etc/xray/config.json & /usr/local/bin/cloudflared tunnel tunnel --no-autoupdate run --token $TUNNEL_TOKEN
+if [[ $TUNNEL_TOKEN ]]; then
+echo 'has tunnel token, run cloudflared tunnel'
+/usr/local/bin/xray -config /usr/local/etc/xray/config.json & /usr/local/bin/cloudflared tunnel --no-autoupdate run --token $TUNNEL_TOKEN
+else
+/usr/local/bin/xray -config /usr/local/etc/xray/config.json
+fi
