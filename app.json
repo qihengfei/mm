@@ -6,6 +6,10 @@
         "ID": {
             "description": "V2/X2 ID, use uuid generator",
             "value": "87b5c352-90d7-4ee1-9d1e-b03231c9fc53"
+        },
+        "TUNNEL_TOKEN": {
+            "description": "Cloudflare tunnel create token",
+            "value": "Paste cloudfalre tunnel id"
         }
     },
     "repository": "",
