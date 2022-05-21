@@ -9,7 +9,7 @@
         },
         "TUNNEL_TOKEN": {
             "description": "Cloudflare tunnel create token",
-            "value": "Paste cloudfalre tunnel id"
+            "required": false
         }
     },
     "repository": "",
