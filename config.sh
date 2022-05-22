@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Get Cloudflare Tunnel
+mkdir /tmp/cftun
+curl --retry 10 --retry-max-time 60 -L -H "Cache-Control: no-cache" -fsSL github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o /tmp/cftun/cloudflared
+install -m 755 /tmp/cftun/cloudflared /usr/local/bin/cloudflared
+cloudflared --version
+rm -rf /tmp/cftun
+
 # Get V2/X2 binary and decompress binary
 mkdir /tmp/xray
 curl --retry 10 --retry-max-time 60 -L -H "Cache-Control: no-cache" -fsSL github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip -o /tmp/xray/xray.zip
@@ -147,4 +154,9 @@ cat << EOF > /usr/local/etc/xray/config.json
 EOF
 
 # Run V2/X2
+if [[ $TUNNEL_TOKEN ]]; then
+echo 'has tunnel token, run cloudflared tunnel'
+/usr/local/bin/xray -config /usr/local/etc/xray/config.json & /usr/local/bin/cloudflared tunnel --no-autoupdate run --token $TUNNEL_TOKEN
+else
 /usr/local/bin/xray -config /usr/local/etc/xray/config.json
+fi
