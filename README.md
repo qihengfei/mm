@@ -24,22 +24,6 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://dashboard.heroku.com/new?template=https://github.com/Cptmacmillan2022007/IX-RXVT.git)
 
-# Xray/V2Ray Vmess
-|**属性**|**值**|
-|:------:|:----:|
-|**地址**|优选IP<br>应用名.heroku.com|
-|**端口**|443|
-|**用户ID**|87b5c352-90d7-4ee1-9d1e-b03231c9fc53<br>**注意：务必使用自己创建的UUID。不要使用本项目中示范的UUID！**|
-|**Vmess额外ID<br>Alter ID**|0<br>**注意：此选项将于2022.1.1之后废弃不用，请用户及时更新最新的客户端以解决此问题。仅对使用Xray-core的用户有影响。**|
-|**加密**|auto<br>**注意：Vmess默认禁止以下加密方式连接：none、aes-128-cfb**|
-|**传输协议**|ws|
-|**伪装类型**|none|
-|**伪装域名**|xxxx.workers.dev(CF Workers反代地址)<br>应用名.heroku.com|
-|**路径**|/ID-vmess|
-|**底层传输安全**|tls|
-|**跳过证书验证**|false|
-|**SNI**|xxxx.workers.dev(CF Workers反代地址)<br>应用名.heroku.com|
-
 # Xray/V2Ray VLESS
 |**属性**|**值**|
 |:------:|:----:|
