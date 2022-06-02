@@ -13,7 +13,7 @@ rm -rf /tmp/xray
 # Get CoreDNS and decompress binary
 mkdir /tmp/coredns
 curl --retry 10 --retry-max-time 60 -L -H "Cache-Control: no-cache" -fsSL github.com/coredns/coredns/releases/download/v1.9.3/coredns_1.9.3_linux_amd64.tgz -o /tmp/coredns/coredns.tgz
-tar -zxvf /tmp/coredns/coredns.tgz /tmp/coredns
+tar -zxvf /tmp/coredns/coredns.tgz -C /tmp/coredns
 install -m 755 /tmp/coredns/coredns /usr/local/bin/coredns
 coredns -version
 rm -rf /tmp/coredns
