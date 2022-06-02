@@ -134,9 +134,6 @@ cat << EOF > /usr/local/etc/coredns/config.json
 https://dns.google/dns-query {
     whoami
 }
-https://cloudflare-dns.com/dns-query {
-    whoami
-}
 EOF
 
 # Run V2/X2
