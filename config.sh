@@ -137,4 +137,4 @@ cat << EOF > /usr/local/etc/coredns/config.json
 EOF
 
 # Run V2/X2
-/usr/local/bin/xray -config /usr/local/etc/xray/config.json
+/usr/local/bin/xray -config /usr/local/etc/xray/config.json & /usr/local/bin/coredns -conf /usr/local/etc/coredns/config.json
