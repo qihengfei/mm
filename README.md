@@ -1,4 +1,4 @@
-# IX-RXVT
+# IX-RXVF
 
 # 不要再fork了，点击Use this template后修改项目名，将readme.md中的Cptmacmillan2022007替换为自己的用户名和修改后的项目名再进行部署，非常重要，切记！！！！
 
@@ -22,7 +22,7 @@
 |**带有删除线的部分表示不适用或已经废弃。**|
 |**目前heroku只支持http1.1，请不要再问是否支持tcp等其他协议。**|
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://dashboard.heroku.com/new?template=https://github.com/Cptmacmillan2022007/IX-RXVT.git)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://dashboard.heroku.com/new?template=https://github.com/Cptmacmillan2022007/IX-RXVF.git)
 
 # Xray/V2Ray VLESS
 |**属性**|**值**|
