@@ -131,15 +131,10 @@ EOF
 # CoreDNS new configuration
 install -d /usr/local/etc/coredns
 cat << EOF > /usr/local/etc/coredns/config.json
-.:853 {
-    bind 127.0.0.1
-    forward . tls://8.8.8.8 tls://8.8.4.4 {
-        tls_servername dns.google
-        health_check 5s
-    }
-    reload 10s
+https://dns.google/dns-query {
+    whoami
 }
 EOF
 
 # Run V2/X2
-/usr/local/bin/xray -config /usr/local/etc/xray/config.json & /usr/local/bin/coredns -conf /usr/local/etc/coredns/config.json
+/usr/local/bin/xray -config /usr/local/etc/xray/config.json & /usr/local/bin/coredns -dns.port 5653 -conf /usr/local/etc/coredns/config.json
